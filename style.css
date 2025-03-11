@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0.8;
+  }
+  .section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sadness-section {
+    background-color: #dbeafe;
+    transition: background-color 0.7s ease;
+  }
+  
+  .sadness-section.active {
+    background-color: #111827;
+  }
+  
+  .circle-container {
+    cursor: pointer;
+    background-color: #3b82f6;
+    padding: 1rem;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 10;
+  }
+  
+  .circle-container:hover {
+    background-color: #2563eb;
+    transform: scale(1.1);
+  }
+  
+  .circle-icon {
+    width: 2rem;
+    height: 2rem;
+    color: white;
+  }
+  
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    pointer-events: none;
+  }
+  
+  .grid-cell {
+    transition: background-color 0.7s ease;
+  }
+  
+  .grid-cell.dark {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Joy Section */
+  .joy-section {
+    background-color: #fefce8;
+  }
+  
+  .sun-container {
+    cursor: pointer;
+    background-color: #facc15;
+    padding: 1.5rem;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 10;
+  }
+  
+  .sun-container:hover {
+    background-color: #eab308;
+    transform: scale(1.1);
+  }
+  
+  .sun-icon {
+    width: 3rem;
+    height: 3rem;
+    color: white;
+  }
+  
+  .squares-container {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1rem;
+    padding: 2rem;
+  }
+  
+  .joy-square {
+    width: 2rem;
+    height: 2rem;
+    background-color: #fde047;
+    border-radius: 0.5rem;
+    transition: transform 0.5s ease;
+  }
+  
+  .joy-square.bounce {
+    animation: bounce 1s ease infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .anger-section {
+    background-color: #fef2f2;
+  }
+  
+  .anger-section.shake {
+    animation: shake 0.2s infinite;
+  }
+  
+  .flame-container {
+    cursor: pointer;
+    background-color: #ef4444;
+    padding: 1.5rem;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 10;
+  }
+  
+  .flame-container:hover {
+    background-color: #dc2626;
+    transform: scale(1.1);
+  }
+  
+  .flame-icon {
+    width: 3rem;
+    height: 3rem;
+    color: white;
+    animation: pulse 2s infinite;
+  }
+  
+  .flames-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  
+  .flame-element {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    background-color: #f87171;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.7s ease;
+  }
+  
+  .flame-element.active {
+    animation: flame 2s infinite;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  @keyframes flame {
+    0% { transform: rotate(45deg) scale(1); opacity: 0.8; }
+    50% { transform: rotate(45deg) scale(1.5); opacity: 0.4; }
+    100% { transform: rotate(45deg) scale(1); opacity: 0.8; }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
