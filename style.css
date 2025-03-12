@@ -146,6 +146,171 @@ main {
   padding-top: 4rem;
 }
 
+/* Concept Section */
+.concept-section {
+  background: linear-gradient(135deg, var(--gray-50), var(--blue-50));
+  padding: 8rem 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.concept-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.concept-title {
+  font-size: 3.5rem;
+  background: linear-gradient(to right, var(--gray-800), var(--blue-600));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.concept-description {
+  font-size: 1.4rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 4rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.emotions-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  position: relative;
+}
+
+.emotion-item {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.emotion-item:nth-child(2) {
+  flex-direction: row-reverse;
+  animation-delay: 0.2s;
+}
+
+.emotion-item:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.emotion-icon {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.emotion-icon:hover {
+  transform: scale(1.1);
+}
+
+.emotion-icon.sadness {
+  background: var(--blue-500);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.emotion-icon.joy {
+  background: var(--yellow-400);
+  box-shadow: 0 0 30px rgba(250, 204, 21, 0.3);
+}
+
+.emotion-icon.anger {
+  background: var(--red-500);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+}
+
+.emotion-icon svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.emotion-content {
+  flex: 1;
+}
+
+.emotion-name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, var(--gray-800), var(--gray-600));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.emotion-description {
+  font-size: 1.2rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .concept-section {
+    padding: 6rem 0;
+  }
+
+  .concept-title {
+    font-size: 2.5rem;
+  }
+
+  .concept-description {
+    font-size: 1.2rem;
+  }
+
+  .emotion-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .emotion-item:nth-child(2) {
+    flex-direction: column;
+  }
+
+  .emotion-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .emotion-description {
+    text-align: center;
+  }
+}
+
 .emotion-section {
   height: 100vh;
   display: flex;
@@ -189,19 +354,34 @@ main {
 .raindrop {
   position: absolute;
   width: 2px;
-  height: 20px;
+  height: 100px;
   background: linear-gradient(transparent, var(--blue-500));
-  animation: rain 1.5s linear infinite;
+  animation: rain 2s linear infinite;
   opacity: 0.4;
+  filter: blur(1px);
+  transition: animation-duration 0.5s ease;
 }
 
 @keyframes rain {
   0% {
-    transform: translateY(-100vh) translateX(0);
+    transform: translateY(-120vh) translateX(0) scaleY(1);
+  }
+  70% {
+    transform: translateY(20vh) translateX(-30px) scaleY(1.1);
   }
   100% {
-    transform: translateY(100vh) translateX(-20px);
+    transform: translateY(120vh) translateX(-40px) scaleY(1);
   }
+}
+
+#sadness {
+  position: relative;
+  background-color: var(--blue-50);
+}
+
+#sadness.rain-active .raindrop {
+  animation-duration: 1s;
+  opacity: 0.6;
 }
 
 #joy { background-color: var(--yellow-50); }
@@ -451,4 +631,46 @@ footer {
 /* Utility classes */
 .shake {
   animation: shake 0.2s infinite;
+}
+
+/* Add these new styles for the video buttons */
+.video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--gray-800);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.video-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.video-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.video-btn::after {
+  content: '▶';
+  margin-left: 0.5rem;
+  font-size: 0.8em;
 }

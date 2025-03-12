@@ -71,7 +71,7 @@ const sadnessSection = document.getElementById('sadness');
 
 // Create raindrops
 function createRaindrops() {
-  const numberOfDrops = 50;
+  const numberOfDrops = 200;
   const container = sadnessSection;
 
   for (let i = 0; i < numberOfDrops; i++) {
@@ -85,20 +85,22 @@ function createRaindrops() {
 
 createRaindrops();
 
+sadnessSection.addEventListener('mouseenter', () => {
+  sadnessSection.classList.add('rain-active');
+});
+
+sadnessSection.addEventListener('mouseleave', () => {
+  sadnessSection.classList.remove('rain-active');
+});
+
 sadnessIcon.addEventListener('mouseenter', () => {
   playAudio(sadnessAudio);
   sadnessSection.querySelector('.gradient').style.opacity = '1';
-  document.querySelectorAll('.raindrop').forEach(drop => {
-    drop.style.opacity = '0.6';
-  });
 });
 
 sadnessIcon.addEventListener('mouseleave', () => {
   stopAudio(sadnessAudio);
   sadnessSection.querySelector('.gradient').style.opacity = '0';
-  document.querySelectorAll('.raindrop').forEach(drop => {
-    drop.style.opacity = '0.4';
-  });
 });
 
 // Joy section
@@ -175,4 +177,12 @@ angerIcon.addEventListener('mouseleave', () => {
   document.body.classList.remove('shake');
   angerSection.querySelector('.gradient').style.opacity = '0';
   angerIcon.classList.remove('shake');
+});
+
+// Add video button functionality
+document.querySelectorAll('.video-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const videoUrl = button.dataset.video;
+    window.open(videoUrl, '_blank');
+  });
 });
