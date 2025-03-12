@@ -68,6 +68,7 @@ header {
 .logo .blue { color: var(--blue-500); }
 .logo .yellow { color: var(--yellow-500); }
 .logo .red { color: var(--red-500); }
+.logo .white { color: white; }
 
 .desktop-nav {
   display: none;
@@ -155,7 +156,54 @@ main {
   overflow: hidden;
 }
 
-#sadness { background-color: var(--blue-50); }
+#sadness { 
+  background-color: var(--blue-50);
+  position: relative;
+}
+
+#sadness::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, var(--blue-50) 70%);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+#sadness .section-title {
+  text-shadow: 0 0 20px rgba(30, 58, 138, 0.3);
+  letter-spacing: 0.1em;
+}
+
+#sadness .icon-container {
+  position: relative;
+  z-index: 2;
+}
+
+#sadness .icon {
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(transparent, var(--blue-500));
+  animation: rain 1.5s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(-100vh) translateX(0);
+  }
+  100% {
+    transform: translateY(100vh) translateX(-20px);
+  }
+}
+
 #joy { background-color: var(--yellow-50); }
 #anger { background-color: var(--red-50); }
 
@@ -210,10 +258,18 @@ main {
 
 .sadness-icon {
   background-color: var(--blue-500);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .sadness-icon:hover {
   background-color: var(--blue-600);
+  animation: none;
 }
 
 .joy-icon {
@@ -234,8 +290,11 @@ main {
 
 /* Animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-15px) translateX(5px); }
+  50% { transform: translateY(-20px) translateX(-5px); }
+  75% { transform: translateY(-10px) translateX(3px); }
+  100% { transform: translateY(0); }
 }
 
 @keyframes float-around {
@@ -273,7 +332,7 @@ main {
   75% { transform: translateX(5px); }
 }
 
-.float { animation: float 3s ease-in-out infinite; }
+.float { animation: float 4s ease-in-out infinite; }
 .float-around { animation: float-around 6s ease-in-out infinite; }
 
 .ripple {

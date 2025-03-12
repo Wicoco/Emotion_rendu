@@ -69,14 +69,36 @@ function stopAudio(audio) {
 const sadnessIcon = document.querySelector('.sadness-icon');
 const sadnessSection = document.getElementById('sadness');
 
+// Create raindrops
+function createRaindrops() {
+  const numberOfDrops = 50;
+  const container = sadnessSection;
+
+  for (let i = 0; i < numberOfDrops; i++) {
+    const drop = document.createElement('div');
+    drop.className = 'raindrop';
+    drop.style.left = `${Math.random() * 100}%`;
+    drop.style.animationDelay = `${Math.random() * 2}s`;
+    container.appendChild(drop);
+  }
+}
+
+createRaindrops();
+
 sadnessIcon.addEventListener('mouseenter', () => {
   playAudio(sadnessAudio);
   sadnessSection.querySelector('.gradient').style.opacity = '1';
+  document.querySelectorAll('.raindrop').forEach(drop => {
+    drop.style.opacity = '0.6';
+  });
 });
 
 sadnessIcon.addEventListener('mouseleave', () => {
   stopAudio(sadnessAudio);
   sadnessSection.querySelector('.gradient').style.opacity = '0';
+  document.querySelectorAll('.raindrop').forEach(drop => {
+    drop.style.opacity = '0.4';
+  });
 });
 
 // Joy section
