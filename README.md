@@ -41,7 +41,7 @@ npm run dev
 - Images from Unsplash
 - Audio tracks from Mixkit
 
-## 📌 Auteurs
+## 📌 Authors
 
 - **Victor Fernel** - [GitHub](https://github.com/Wicoco)
 - **Théo Jublou** - [GitHub](https://github.com/IBookki)
